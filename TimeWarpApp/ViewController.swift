@@ -68,7 +68,12 @@ class ViewController: UIViewController {
     @IBOutlet weak var optionTwo: UIButton!
     
     var questionIndex : Int = 0
+    var score : Int = 0
     let imageArray80s = ["80s_music", "80s_movie", "80s_slang", "80s_games", "80s_tv"]
+    
+    let outcomeSuccessArray = ["Your 80s knowledge has paid off! You can stay!","You scored high enough to go back to the future!"]
+    
+    let outcomeFailureArray = ["You didn't score high enough to stay!","You didn't score high enough to come back. You're stuck here for a while."]
     
     
     let loadquestion = QuestionLoad("You've entered a time warp to the 1980's! It's up to you to try to remain in the 80's or go back to the future!","Stay in the 80s", "Go back to the future","Whichever")
@@ -123,7 +128,10 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         loadUI()
     }
-
+    
+    
+    @IBOutlet weak var scoreLabel: UILabel!
+    
     @IBAction func answerSubmitted(_ sender: UIButton) {
         switch sender.tag {
             
@@ -137,9 +145,7 @@ class ViewController: UIViewController {
             let answerSubmitted = sender.titleLabel!.text!
             let isCorrect = compare80sAnswer(answerSubmitted)
             if isCorrect {
-                sender.backgroundColor = UIColor.green
-            } else {
-                sender.backgroundColor = UIColor.red
+                score += 1
             }
             
             increaseIndex()
@@ -170,6 +176,7 @@ class ViewController: UIViewController {
     }
     
     func load80sUI() {
+        scoreLabel.text = "Score: \(score)"
         questionLabel.text = questionEighties[questionIndex].question80s
         imageView.image = UIImage(named: imageArray80s[questionIndex])
         background.image = UIImage(named: "80s_background")
@@ -193,6 +200,20 @@ class ViewController: UIViewController {
             questionIndex += 1
         } else {
             questionIndex = 0
+            score = 0
+            stayIn80s()
+        }
+    }
+    
+    func stayIn80s() {
+        if score > 2 {
+            questionLabel.text = outcomeSuccessArray[0]
+            background.image = UIImage(named: "80s_background")
+            imageView.image = UIImage(named: imageArray80s[questionIndex])
+        } else {
+            questionLabel.text = outcomeFailureArray[0]
+            imageView.image = UIImage(named: imageArray80s[questionIndex])
+            background.image = UIImage(named: "timewarp2")
         }
     }
 }

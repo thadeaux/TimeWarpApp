@@ -26,18 +26,25 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="J8J-VW-8hT">
                                         <rect key="frame" x="98.666666666666671" y="0.0" width="135.66666666666663" height="259"/>
                                         <subviews>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="80s_background" translatesAutoresizingMaskIntoConstraints="NO" id="mND-Uv-Nk1">
-                                                <rect key="frame" x="-82" y="29.333333333333332" width="300" height="130"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="130" id="ug8-yj-sKb"/>
-                                                    <constraint firstAttribute="width" constant="300" id="xw5-0b-YrW"/>
-                                                </constraints>
-                                            </imageView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" axis="vertical" distribution="fillEqually" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="XYB-KL-jaH">
+                                                <rect key="frame" x="-102" y="29.333333333333314" width="300" height="270"/>
+                                                <subviews>
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="80s_background" translatesAutoresizingMaskIntoConstraints="NO" id="mND-Uv-Nk1">
+                                                        <rect key="frame" x="0.0" y="0.0" width="300" height="130"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="130" id="ug8-yj-sKb"/>
+                                                            <constraint firstAttribute="width" constant="300" id="xw5-0b-YrW"/>
+                                                        </constraints>
+                                                    </imageView>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Score: " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f5Q-5x-OF7">
+                                                        <rect key="frame" x="94.666666666666686" y="140" width="111" height="130"/>
+                                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="35"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                            </stackView>
                                         </subviews>
-                                        <constraints>
-                                            <constraint firstItem="mND-Uv-Nk1" firstAttribute="centerY" secondItem="J8J-VW-8hT" secondAttribute="centerY" id="o4c-Cc-ygt"/>
-                                            <constraint firstItem="mND-Uv-Nk1" firstAttribute="centerX" secondItem="J8J-VW-8hT" secondAttribute="centerX" id="pQH-gQ-vNj"/>
-                                        </constraints>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You've entered a time warp to the 1980's! It's up to you to try to remain in the 80's or go back to the future!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="7" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5KL-O2-m63">
                                         <rect key="frame" x="0.0" y="259" width="333" height="258.66666666666674"/>
@@ -73,7 +80,7 @@
                                                     <color key="baseForegroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </buttonConfiguration>
                                                 <connections>
-                                                    <action selector="answerSubmittedLoad:" destination="BYZ-38-t0r" eventType="touchUpInside" id="S7r-gm-b5m"/>
+                                                    <action selector="answerSubmitted:" destination="BYZ-38-t0r" eventType="touchUpInside" id="mfq-h1-aX7"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -106,6 +113,7 @@
                         <outlet property="optionOne" destination="qX2-hl-oBN" id="Uk4-0O-hC0"/>
                         <outlet property="optionTwo" destination="LHL-IU-6D0" id="Wz2-Si-SqU"/>
                         <outlet property="questionLabel" destination="5KL-O2-m63" id="ENb-kh-JMj"/>
+                        <outlet property="scoreLabel" destination="f5Q-5x-OF7" id="UnN-PI-EUj"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
