@@ -26,13 +26,11 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="J8J-VW-8hT">
                                         <rect key="frame" x="98.666666666666671" y="0.0" width="135.66666666666663" height="259"/>
                                         <subviews>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="80s_background" translatesAutoresizingMaskIntoConstraints="NO" id="mND-Uv-Nk1">
-                                                <rect key="frame" x="-31.999999999999986" y="29.333333333333314" width="200" height="200"/>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="80s_background" translatesAutoresizingMaskIntoConstraints="NO" id="mND-Uv-Nk1">
+                                                <rect key="frame" x="-82" y="29.333333333333332" width="300" height="130"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="200" id="549-hy-dFJ"/>
-                                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="200" id="XGW-w2-wEQ"/>
-                                                    <constraint firstAttribute="height" constant="200" id="ug8-yj-sKb"/>
-                                                    <constraint firstAttribute="width" constant="200" id="xw5-0b-YrW"/>
+                                                    <constraint firstAttribute="height" constant="130" id="ug8-yj-sKb"/>
+                                                    <constraint firstAttribute="width" constant="300" id="xw5-0b-YrW"/>
                                                 </constraints>
                                             </imageView>
                                         </subviews>
@@ -41,9 +39,9 @@
                                             <constraint firstItem="mND-Uv-Nk1" firstAttribute="centerX" secondItem="J8J-VW-8hT" secondAttribute="centerX" id="pQH-gQ-vNj"/>
                                         </constraints>
                                     </view>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5KL-O2-m63">
-                                        <rect key="frame" x="146" y="259" width="41.333333333333343" height="258.66666666666674"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You've entered a time warp to the 1980's! It's up to you to try to remain in the 80's or go back to the future!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="7" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5KL-O2-m63">
+                                        <rect key="frame" x="0.0" y="259" width="333" height="258.66666666666674"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -57,7 +55,12 @@
                                                     <backgroundConfiguration key="background" strokeWidth="4">
                                                         <color key="strokeColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </backgroundConfiguration>
+                                                    <fontDescription key="titleFontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="24"/>
+                                                    <color key="baseForegroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </buttonConfiguration>
+                                                <connections>
+                                                    <action selector="answerSubmitted:" destination="BYZ-38-t0r" eventType="touchUpInside" id="0ia-gW-DId"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LHL-IU-6D0">
                                                 <rect key="frame" x="0.0" y="98.333333333333371" width="273" height="83"/>
@@ -66,7 +69,12 @@
                                                     <backgroundConfiguration key="background" strokeWidth="4">
                                                         <color key="strokeColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </backgroundConfiguration>
+                                                    <fontDescription key="titleFontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="24"/>
+                                                    <color key="baseForegroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </buttonConfiguration>
+                                                <connections>
+                                                    <action selector="answerSubmittedLoad:" destination="BYZ-38-t0r" eventType="touchUpInside" id="S7r-gm-b5m"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                     </stackView>
@@ -92,10 +100,17 @@
                             <constraint firstAttribute="bottom" secondItem="uTN-aH-cOO" secondAttribute="bottom" id="zh0-SE-ovC"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="background" destination="uTN-aH-cOO" id="DKC-8S-URR"/>
+                        <outlet property="imageView" destination="mND-Uv-Nk1" id="oum-br-NKE"/>
+                        <outlet property="optionOne" destination="qX2-hl-oBN" id="Uk4-0O-hC0"/>
+                        <outlet property="optionTwo" destination="LHL-IU-6D0" id="Wz2-Si-SqU"/>
+                        <outlet property="questionLabel" destination="5KL-O2-m63" id="ENb-kh-JMj"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-37.404580152671755" y="3.5211267605633805"/>
+            <point key="canvasLocation" x="-1082" y="-801"/>
         </scene>
     </scenes>
     <resources>
