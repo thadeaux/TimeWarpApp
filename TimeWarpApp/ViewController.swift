@@ -71,6 +71,8 @@ class ViewController: UIViewController {
     var score : Int = 0
     let imageArray80s = ["80s_music", "80s_movie", "80s_slang", "80s_games", "80s_tv"]
     
+    let imageArrayPresent = ["90s_question", "2000s_movie", "2010s_games", "2020s_tv"]
+    
     let outcomeSuccessArray = ["Your 80s knowledge has paid off! You can stay!","You scored high enough to go back to the future!"]
     
     let outcomeFailureArray = ["You didn't score high enough to stay!","You didn't score high enough to come back. You're stuck here for a while."]
@@ -147,17 +149,41 @@ class ViewController: UIViewController {
             if isCorrect {
                 score += 1
             }
+            if questionIndex < 4 {
+                increaseIndex()
+                load80sUI()
+            } else {
+                stayIn80s()
+            }
             
-            increaseIndex()
-            load80sUI()
+        case 3:
+            loadUI()
+        
+        case 4:
+            let answerSubmitted = sender.titleLabel!.text!
+            let isCorrect = comparePresentAnswer(answerSubmitted)
+            if isCorrect {
+                score += 1
+            }
+            if questionIndex < 4 {
+                increaseIndex()
+                loadPresentUI()
+            } else {
+                backToPresent()
+            }
+            
+            
         default:
-            print("unknown")
+            print("Whatever")
         }
         
     }
 
     
     func loadUI() {
+        optionTwo.isHidden = false
+        imageView.image = UIImage(named: "80s_background")
+        background.image = UIImage(named: "timewarp2")
         questionLabel.text = loadquestion.questionLoad
         optionOne.setTitle(loadquestion.option_oneLoad, for: .normal)
         optionOne.tag = 1
@@ -184,7 +210,7 @@ class ViewController: UIViewController {
         optionOne.setTitle(questionEighties[questionIndex].option_one80s, for: .normal)
         optionTwo.tag = 2
         optionTwo.setTitle(questionEighties[questionIndex].option_two80s, for: .normal)
-            
+        
     }
     
     func compare80sAnswer(_ response: String) -> Bool {
@@ -200,21 +226,68 @@ class ViewController: UIViewController {
             questionIndex += 1
         } else {
             questionIndex = 0
-            score = 0
             stayIn80s()
         }
     }
     
     func stayIn80s() {
+        optionOne.tag = 3
+        optionOne.setTitle("Go back to time warp", for: .normal)
+        optionTwo.isHidden = true
         if score > 2 {
             questionLabel.text = outcomeSuccessArray[0]
             background.image = UIImage(named: "80s_background")
             imageView.image = UIImage(named: imageArray80s[questionIndex])
+
         } else {
             questionLabel.text = outcomeFailureArray[0]
             imageView.image = UIImage(named: imageArray80s[questionIndex])
             background.image = UIImage(named: "timewarp2")
+    
         }
+        score = 0
+        questionIndex = 0
+        scoreLabel.text = "Score: \(score)"
+    }
+    
+    func loadPresentUI() {
+        scoreLabel.text = "Score: \(score)"
+        questionLabel.text = presentQuestion[questionIndex].questionPresent
+        imageView.image = UIImage(named: imageArrayPresent[questionIndex])
+        background.image = UIImage(named: "present_background")
+        optionOne.tag = 4
+        optionOne.setTitle(presentQuestion[questionIndex].option_onePresent, for: .normal)
+        optionTwo.tag = 4
+        optionTwo.setTitle(presentQuestion[questionIndex].option_twoPresent, for: .normal)
+        
+    }
+    
+    func comparePresentAnswer(_ response: String) -> Bool {
+        if response == presentQuestion[questionIndex].answerPresent {
+            return true
+        } else {
+            return false
+        }
+    }
+    
+    func backToPresent() {
+        optionOne.tag = 3
+        optionOne.setTitle("Go back to time warp", for: .normal)
+        optionTwo.isHidden = true
+        if score > 2 {
+            questionLabel.text = outcomeSuccessArray[1]
+            background.image = UIImage(named: "present_background")
+            imageView.image = UIImage(named: imageArrayPresent[questionIndex])
+
+        } else {
+            questionLabel.text = outcomeFailureArray[1]
+            imageView.image = UIImage(named: imageArrayPresent[questionIndex])
+            background.image = UIImage(named: "timewarp2")
+    
+        }
+        score = 0
+        questionIndex = 0
+        scoreLabel.text = "Score: \(score)"
     }
 }
 
