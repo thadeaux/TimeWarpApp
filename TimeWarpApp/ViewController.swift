@@ -71,7 +71,7 @@ class ViewController: UIViewController {
     var score : Int = 0
     let imageArray80s = ["80s_music", "80s_movie", "80s_slang", "80s_games", "80s_tv"]
     
-    let imageArrayPresent = ["90s_question", "2000s_movie", "2010s_games", "2020s_tv"]
+    let imageArrayPresent = ["90s_question", "2000s_movie", "2010_games", "2020s_tv"]
     
     let outcomeSuccessArray = ["Your 80s knowledge has paid off! You can stay!","You scored high enough to go back to the future!"]
     
@@ -116,10 +116,6 @@ class ViewController: UIViewController {
                          "Halo",
                          "Call of Duty",
                          "Call of Duty"),
-            QuestionPresent("What color is the ghost named Blinky in Pac-Man?",
-                         "Orange",
-                         "Red",
-                         "Red"),
             QuestionPresent("What Lee Child inspired series debuted in 2022?",
                          "Reacher",
                          "Tracker",
@@ -142,6 +138,8 @@ class ViewController: UIViewController {
             let answerSubmitted = sender.titleLabel!.text!
             if loadUserAnswer(answerSubmitted) {
                 load80sUI()
+            } else {
+                loadPresentUI()
             }
         case 2:
             let answerSubmitted = sender.titleLabel!.text!
@@ -150,7 +148,7 @@ class ViewController: UIViewController {
                 score += 1
             }
             if questionIndex < 4 {
-                increaseIndex()
+                increase80sIndex()
                 load80sUI()
             } else {
                 stayIn80s()
@@ -165,8 +163,8 @@ class ViewController: UIViewController {
             if isCorrect {
                 score += 1
             }
-            if questionIndex < 4 {
-                increaseIndex()
+            if questionIndex < 3 {
+                increasePresentIndex()
                 loadPresentUI()
             } else {
                 backToPresent()
@@ -221,8 +219,17 @@ class ViewController: UIViewController {
         }
     }
     
-    func increaseIndex() {
+    func increase80sIndex() {
         if questionIndex < questionEighties.count - 1 {
+            questionIndex += 1
+        } else {
+            questionIndex = 0
+            stayIn80s()
+        }
+    }
+    
+    func increasePresentIndex() {
+        if questionIndex < presentQuestion.count - 1 {
             questionIndex += 1
         } else {
             questionIndex = 0
